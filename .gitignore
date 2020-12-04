@@ -13,3 +13,7 @@ traffic/Debug/traffic.srec
 traffic/traffic.componentinfo.xml
 traffic/traffic.atsln
 traffic/traffic.cproj
+traffic/Debug/traffic.o
+traffic/Debug/traffic.d
+traffic/Debug/timer.o
+traffic/Debug/timer.d

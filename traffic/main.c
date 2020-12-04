@@ -1,9 +1,12 @@
-#include <avr/io.h>
+#include "traffic.h"
 
+#define F_CPU 16000000
+#include <util/delay.h>
 
 int main(void)
 {
-    /* Replace with your application code */
+	init();
+	
     while (1) 
     {
     }
