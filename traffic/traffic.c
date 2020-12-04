@@ -3,6 +3,11 @@
 void timer_init();
 
 uint8_t vonat = 1;
+uint8_t ki = 0;
+uint8_t ki_2 =0;
+uint8_t nyom = 0;
+uint8_t gomb_1 = 0;
+uint8_t gomb_2 = 0;
 
 void init()
 {
@@ -303,4 +308,71 @@ void kapcsol(char lampa, char allapot)
 		break;
 		
 	}
+}
+
+uint8_t panel_gomb()
+{
+	PORTE |= (1<<BTNV1) | (1<<BTNV2);
+	
+	if(BTNV1_PRESSED() && (nyom == 0))
+	{
+		nyom = 1;
+		if(gomb_1 ==0 && gomb_2 == 0)
+		{
+			ki = 1;
+			gomb_1 = 1;
+			gomb_2 = 0;
+		}
+		if(gomb_1 == 0 && gomb_2 == 1)
+		{
+			ki ^=1;
+			gomb_1^=1;
+			gomb_2^=1;
+			if(ki == 0)
+			{
+				gomb_1=gomb_2=0;
+			}
+		}
+	}
+	if(BTNV2_PRESSED() && (nyom == 0))
+	{
+		nyom = 1;
+		if(gomb_1 ==0 && gomb_2 == 0)
+		{
+			ki = 1;
+			gomb_1 = 0;
+			gomb_2 = 1;
+		}
+		if(gomb_1 == 1 && gomb_2 == 0)
+		{
+			ki^=1;
+			gomb_1^=1;
+			gomb_2^=1;
+			if(ki == 0)
+			{
+				gomb_1=gomb_2=0;
+			}
+		}
+	}
+	if(!BTNV1_PRESSED() && !BTNV2_PRESSED())
+	{
+		nyom = 0;
+	}
+	
+	return ki;
+}
+
+uint8_t gomb ()
+{
+	uint8_t btn = PING&0x1F;
+	if(btn == 1 && nyom == 0)
+	{
+		nyom = 1;
+		ki_2 ^= 1;
+	}
+	else
+	{
+		nyom = 0;
+	}
+	return ki_2;
 }

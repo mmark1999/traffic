@@ -1,5 +1,6 @@
 ﻿#include <avr/io.h>
 #include <avr/interrupt.h>
+#include <stdlib.h>
 
 #ifndef TRAFFIC_H_
 #define TRAFFIC_H_
@@ -53,5 +54,7 @@ extern uint8_t vonat;
 void init();
 void kapcsol(char lampa, char allapot);
 void PWM_villog(char lampa);
+uint8_t panel_gomb();
+uint8_t gomb ();
 
 #endif /* TRAFFIC_H_ */

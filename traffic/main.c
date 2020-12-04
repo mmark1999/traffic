@@ -9,6 +9,14 @@ int main(void)
 	
     while (1) 
     {
+		if(gomb() == 1)
+		{
+			kapcsol(2,'P');
+		}
+		else
+		{
+			kapcsol(2, 0);
+		}
     }
 }
 
