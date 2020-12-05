@@ -49,6 +49,10 @@
 
 //globalis valtozok
 extern uint8_t vonat;
+extern int sec_cntr;
+extern uint8_t cntr_en;
+extern uint8_t cntr_delta_en;
+extern int delta_cntr;
 
 //fuggvenyek
 void init();
@@ -56,5 +60,6 @@ void kapcsol(char lampa, char allapot);
 void PWM_villog(char lampa);
 uint8_t panel_gomb();
 uint8_t gomb ();
+void led (uint8_t led);
 
 #endif /* TRAFFIC_H_ */

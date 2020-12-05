@@ -6,6 +6,7 @@ uint8_t vonat = 1;
 uint8_t ki = 0;
 uint8_t ki_2 =0;
 uint8_t nyom = 0;
+uint8_t nyom_1 =0;
 uint8_t gomb_1 = 0;
 uint8_t gomb_2 = 0;
 
@@ -43,7 +44,7 @@ void kapcsol(char lampa, char allapot)
 			{
 				PORTA |= (1<<LB_Z2);
 			}
-			else if(allapot == 0)
+			else if(allapot == 'P')
 			{
 				PORTA &=  ~(1<<LB_Z2);
 			}
@@ -194,7 +195,7 @@ void kapcsol(char lampa, char allapot)
 			{
 				PORTF |= (1<<LE_Z2);
 			}
-			else if(allapot == 0)
+			else if(allapot == 'P')
 			{
 				PORTF &=  ~(1<<LE_Z2);
 			}
@@ -293,8 +294,6 @@ void kapcsol(char lampa, char allapot)
 			if(allapot == 'P')
 			{
 				vonat = 0;
-				
-				
 			}
 			if(allapot == 'F')
 			{
@@ -314,9 +313,9 @@ uint8_t panel_gomb()
 {
 	PORTE |= (1<<BTNV1) | (1<<BTNV2);
 	
-	if(BTNV1_PRESSED() && (nyom == 0))
+	if(BTNV1_PRESSED() && (nyom_1 == 0))
 	{
-		nyom = 1;
+		nyom_1 = 1;
 		if(gomb_1 ==0 && gomb_2 == 0)
 		{
 			ki = 1;
@@ -328,15 +327,16 @@ uint8_t panel_gomb()
 			ki ^=1;
 			gomb_1^=1;
 			gomb_2^=1;
+			
 			if(ki == 0)
 			{
 				gomb_1=gomb_2=0;
 			}
 		}
 	}
-	if(BTNV2_PRESSED() && (nyom == 0))
+	if(BTNV2_PRESSED() && (nyom_1 == 0))
 	{
-		nyom = 1;
+		nyom_1 = 1;
 		if(gomb_1 ==0 && gomb_2 == 0)
 		{
 			ki = 1;
@@ -356,7 +356,7 @@ uint8_t panel_gomb()
 	}
 	if(!BTNV1_PRESSED() && !BTNV2_PRESSED())
 	{
-		nyom = 0;
+		nyom_1 = 0;
 	}
 	
 	return ki;
@@ -375,4 +375,10 @@ uint8_t gomb ()
 		nyom = 0;
 	}
 	return ki_2;
+}
+
+void led (uint8_t led)
+{
+	PORTD = led;
+	PORTB = led<<4;
 }

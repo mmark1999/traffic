@@ -7,16 +7,30 @@ uint8_t multiply = 1;
 char lamp = 0;
 
 int it_cntr = 0;
+int sec_cntr = 0;
+int delta_cntr = 0;
 uint8_t train = 0;
+uint8_t cntr_en = 1;
+uint8_t cntr_delta_en = 0;
 
 void PWM_func();
 void vonat_lampa();
 
 ISR(TIMER0_COMP_vect)
 {
-	if(it_cntr == 1000)
+	if(it_cntr == 1000 )
 	{
 		it_cntr = 0;
+		
+		if(cntr_en == 1)
+		{
+			sec_cntr++;
+		}
+		if(cntr_delta_en == 1)
+		{
+			delta_cntr++;
+		}
+		
 	}
 	else
 	{
@@ -120,10 +134,6 @@ void PWM_func()
 
 void PWM_villog(char lampa)
 {
-	PWM_cnt = 0;
-	PWM_seg_cnt = 0;
-	PWM = 0;
-	multiply = 1;
 	lamp = lampa;
 }
 
