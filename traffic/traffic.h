@@ -31,11 +31,11 @@
 #define LV_P2	PF2
 #define LV_F	PF3
 
-#define LG1_P	PE2 //8
-#define LG1_Z	PE3
+#define LG1_P	PE3 //8
+#define LG1_Z	PE2
 
-#define LG2_P	PE6 //9
-#define LG2_Z	PE7
+#define LG2_P	PE7 //9
+#define LG2_Z	PE6
 
 #define BTNV1	PE4
 #define BTNV2	PE5
